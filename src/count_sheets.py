@@ -1,10 +1,6 @@
 import numpy as np
 from abc import ABCMeta, abstractmethod
 
-x = [0, 6000, 12000, 18000]
-y = [0, 3000, 3000, 0]
-print(np.interp(1150, x, y))
-
 
 class CountHeightSlopeBase:
 
