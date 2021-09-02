@@ -1,7 +1,7 @@
 var canvas = document.getElementById("example"),
     ctx = example.getContext('2d');
-ctx.transform(1, 0, 0, -1, 0, canvas.height)
 
+// ctx.transform(1, 0, 0, -1, 0, canvas.height)
 
 obj0 = {
     coordinates: [[1.5, 1.5], [1201.5, 1.5], [651.5, 601.5], [551.5, 601.5], [1.5, 1.5]],
@@ -89,4 +89,12 @@ allObjects = [
     obj11,
 ]
 
-let compos = new CanvasCompositionDrawer(allObjects, ctx)
+// let compos = new CanvasCompositionDrawer([CANVAS_DATA], ctx)
+ 
+
+const CANVAS_DATA = {"all_objects": [{"all_coordinates": null, "all_objects": [{"all_coordinates": [[798.5714285714286, 598.5714285714286], [683.8095238095239, 598.5714285714286], [683.8095238095239, 489.04761904761904], [798.5714285714286, 489.04761904761904], [798.5714285714286, 598.5714285714286]], "all_objects": [], "strokeColor": "green", "lineWidth": 2, "text_blocks": [{"text": "1150.0", "all_coordinates": [741.1904761904761, 543.8095238095239]}]}, {"all_coordinates": [[689.047619047619, 598.5714285714286], [574.2857142857143, 598.5714285714286], [574.2857142857143, 379.5238095238095], [689.047619047619, 379.5238095238095], [689.047619047619, 598.5714285714286]], "all_objects": [], "strokeColor": "green", "lineWidth": 2, "text_blocks": [{"text": "2300.0", "all_coordinates": [631.6666666666666, 489.04761904761904]}]}, {"all_coordinates": [[579.5238095238095, 598.5714285714286], [464.76190476190476, 598.5714285714286], [464.76190476190476, 360.4761904761905], [579.5238095238095, 360.4761904761905], [579.5238095238095, 598.5714285714286]], "all_objects": [], "strokeColor": "green", "lineWidth": 2, "text_blocks": [{"text": "2500.0", "all_coordinates": [522.1428571428571, 479.5238095238095]}]}, {"all_coordinates": [[470.0, 598.5714285714286], [355.23809523809524, 598.5714285714286], [355.23809523809524, 360.4761904761905], [470.0, 360.4761904761905], [470.0, 598.5714285714286]], "all_objects": [], "strokeColor": "green", "lineWidth": 2, "text_blocks": [{"text": "2500", "all_coordinates": [412.6190476190476, 479.5238095238095]}]}, {"all_coordinates": [[360.4761904761905, 598.5714285714286], [245.71428571428572, 598.5714285714286], [245.71428571428572, 360.4761904761905], [360.4761904761905, 360.4761904761905], [360.4761904761905, 598.5714285714286]], "all_objects": [], "strokeColor": "green", "lineWidth": 2, "text_blocks": [{"text": "2500.0", "all_coordinates": [303.0952380952381, 479.5238095238095]}]}, {"all_coordinates": [[250.95238095238096, 598.5714285714286], [136.1904761904762, 598.5714285714286], [136.1904761904762, 384.2857142857143], [250.95238095238096, 384.2857142857143], [250.95238095238096, 598.5714285714286]], "all_objects": [], "strokeColor": "green", "lineWidth": 2, "text_blocks": [{"text": "2250.0", "all_coordinates": [193.57142857142858, 491.42857142857144]}]}, {"all_coordinates": [[141.42857142857142, 598.5714285714286], [26.666666666666668, 598.5714285714286], [26.666666666666668, 493.8095238095238], [141.42857142857142, 493.8095238095238], [141.42857142857142, 598.5714285714286]], "all_objects": [], "strokeColor": "green", "lineWidth": 2, "text_blocks": [{"text": "1100.0", "all_coordinates": [84.04761904761905, 546.1904761904761]}]}], "strokeColor": null, "lineWidth": null, "text_blocks": []}]}
+const CANVAS_SLOPE = {"all_objects": [{"all_coordinates": [[798.5714285714286, 598.5714285714286], [36.666666666666664, 598.5714285714286], [274.76190476190476, 360.4761904761905], [560.4761904761905, 360.4761904761905], [798.5714285714286, 598.5714285714286]], "all_objects": [], "strokeColor": "rgba(255, 0, 0, 0.5)", "lineWidth": 2, "text_blocks": []}]}
+
+
+let compos = new CanvasCompositionDrawer([CANVAS_DATA], ctx)
+let slope = new CanvasCompositionDrawer([CANVAS_SLOPE], ctx)

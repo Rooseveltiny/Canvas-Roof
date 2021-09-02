@@ -15,3 +15,9 @@ class UpSideIsGreaterThanDownSide(BaseException):
 
 class UpSideShouldBeMoreThan600mm(BaseException):
     message = "up side should be more than 600 mm!"
+
+class SerializeError(BaseException):
+    message = "Error during serializing"
+
+class ItIsNotCoordinate(BaseException):
+    message = "Looks like error in finding center of coordintates"

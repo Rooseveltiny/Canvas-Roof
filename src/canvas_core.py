@@ -7,6 +7,12 @@ class CanvasPoint:
         self.x = x
         self.y = y
 
+    def set_x(self, x):
+        self.x = x
+
+    def set_y(self, y):
+        self.y = y
+
     def get_point_upper(self, value):
         self.y += value
 
@@ -157,6 +163,14 @@ class CanvasIsoscelesTrapezoid(CanvasBaseFigure):
         self.canvas_pointer.move_left(self.up_side)
         self.save_point()
         self.close_figure()
+
+
+class CanvasTextBlock:
+
+    def __init__(self, text, canvas_point):
+
+        self.text = text
+        self.canvas_point = canvas_point
 
 
 if __name__ == "__main__":

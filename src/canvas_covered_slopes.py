@@ -1,6 +1,8 @@
 from abc import ABCMeta, abstractmethod
 from canvas_core import CanvasPoint, CanvasPointer
 from math import ceil
+from canvas_serializer import CanvasSlopeDataSerializer
+from canvas_resizer import CanvasResizer
 from count_sheets import (
     CountTrapezSlope,
     CountRectangleSlope,
@@ -29,7 +31,7 @@ class CanvasCoveredBase:
         self.start_point = start_point
         self.sheets_quantity = 0
         self.sheets_heights = []
-        self.all_sheets = []
+        self.all_objects = []
         self.slope = None
         self.perform_init(*args, **kwargs)
         self.build_slope()
@@ -38,7 +40,7 @@ class CanvasCoveredBase:
         self.cover_with_sheets()
 
     def cover_sheet(self, start_point, height):
-        self.all_sheets.append(CorrugatedSheet(
+        self.all_objects.append(CorrugatedSheet(
             start_point, height, corrugated_params=self.corrugated_params))
 
     @abstractmethod
@@ -137,6 +139,16 @@ class CoveredIsoscelesTriangleSlope(CanvasCoveredBase):
             self.slope, self.corrugated_params, self.sheets_quantity).heights
 
 
+def _get_test_data(sheets, max_x, max_y, can_x, can_y):
+
+    CanvasResizer(sheets, max_x, max_y, can_x, can_y)
+    prepeared_data = CanvasSlopeDataSerializer(sheets)
+    prepeared_slope_data = CanvasSlopeDataSerializer(sheets.slope)
+    print(prepeared_data.data)
+    print('----- ----- ----- ----- ------ ------')
+    print(prepeared_slope_data.data)
+
+
 if __name__ == "__main__":
 
     curragated_params = CorrugatedSheetParams(1205, 1150)
@@ -145,8 +157,10 @@ if __name__ == "__main__":
 
     curragated_params = CorrugatedSheetParams(1205, 1150)
     covered_trapez = CoveredTrapezSlope(CanvasPoint(
-        15, 15), curragated_params, up_side=0, down_side=8000, slope_height=6000)
+        15, 15), curragated_params, up_side=3000, down_side=8000, slope_height=2500)
 
     curragated_params = CorrugatedSheetParams(1205, 1150)
     isosceles_triangle = CoveredIsoscelesTriangleSlope(
         CanvasPoint(15, 15), curragated_params, height=5000, width=10000)
+
+    _get_test_data(covered_trapez, 8000, 2500, 800, 600)
