@@ -2,6 +2,47 @@ import numpy as np
 from abc import ABCMeta, abstractmethod
 
 
+class SlopeContourPoints:
+
+    def __init__(self, x_dots, y_dots):
+
+        self.x_dots = x_dots
+        self.y_dots = y_dots
+        self.countur_points_x = []
+        self.countur_points_y = []
+        self._build_countur()
+
+    def _build_countur(self):
+
+        first_x = min(self.x_dots)
+        last_x = max(self.x_dots)
+        x = first_x
+        while x <= last_x:
+            y = np.interp(
+                x, self.x_dots, self.y_dots)
+            self.countur_points_x.append(x)
+            self.countur_points_y.append(y)
+            x += 10
+
+    def get_highest_point(self, start_x, end_x):
+
+        start_x = int(round(start_x, -1))
+        end_x = int(round(end_x, -1))
+
+        if start_x in self.countur_points_x:
+            first_index = self.countur_points_x.index(start_x)
+        else:
+            first_index = 0
+        
+        if end_x in self.countur_points_x:
+            last_index = self.countur_points_x.index(end_x)
+        else:
+            last_index = len(self.countur_points_x) - 1
+
+        array_of_points = self.countur_points_y[first_index: last_index+1]
+        return max(array_of_points)
+
+
 class CountHeightSlopeBase:
 
     def __init__(self, slope, curragated_sheet_param, count_of_sheets):
@@ -21,21 +62,11 @@ class CountHeightSlopeBase:
 
         current_width_right = self.curragated_sheet.work_width
         current_width_left = 0
+        sloup_countur = SlopeContourPoints(self.x_dots, self.y_dots)
 
-        transition = True
-        for i in range(0, self.count_of_sheets):
-            right_height = np.interp(
-                current_width_right, self.x_dots, self.y_dots)
-            left_height = np.interp(
-                current_width_left, self.x_dots, self.y_dots)
-            if right_height > left_height:
-                self.heights.append(right_height)
-            elif right_height <= left_height:
-                if transition:
-                    self.heights.append(max(self.y_dots))
-                    transition = False
-                else:
-                    self.heights.append(left_height)
+        for _ in range(0, self.count_of_sheets):
+            height = sloup_countur.get_highest_point(current_width_left, current_width_right)
+            self.heights.append(height)
             current_width_right += self.curragated_sheet.work_width
             current_width_left += self.curragated_sheet.work_width
 

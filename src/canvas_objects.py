@@ -4,6 +4,7 @@ from custom_errors import ItIsNotCoordinate
 from statistics import mean
 from canvas_core import CanvasTextBlock
 
+
 class CanvasBaseObject:
 
     strokeColor = "#000000"
@@ -41,7 +42,6 @@ class CanvasBaseObject:
     def _add_text_blocks(self):
         pass
 
-
     @staticmethod
     def find_center_of_coordinates(*args):
 
@@ -51,7 +51,8 @@ class CanvasBaseObject:
             if not type(coordinate) == list:
                 raise ItIsNotCoordinate
             x, y = coordinate
-            all_x.append(x); all_y.append(y)
+            all_x.append(x)
+            all_y.append(y)
         return [mean(all_x), mean(all_y)]
 
 
@@ -73,8 +74,9 @@ class CorrugatedSheet(CanvasBaseObject):
     strokeColor = "green"
     lineWidth = 2
 
-    def perform_object__init(self, height, *args, **kwargs):
+    def perform_object__init(self, height, text_font, *args, **kwargs):
         self.height = height
+        self.text_font = text_font
         self.corrugated_params = kwargs['corrugated_params']
 
     def _build(self):
@@ -85,9 +87,16 @@ class CorrugatedSheet(CanvasBaseObject):
 
     def _add_text_blocks(self):
 
-        text_placement = CanvasBaseObject.find_center_of_coordinates(*self.all_coordinates[0][0:4])
-        text_object = CanvasTextBlock(str(self.height), CanvasPoint(*text_placement))
+        text_placement = CanvasBaseObject.find_center_of_coordinates(
+            *self.all_coordinates[0][0:4])
+        text = f'{str(int(round(self.height/5.0)*5))}'
+        text_object = CanvasTextBlock(
+            text, self.font, CanvasPoint(*text_placement))
         self.text_blocks.append(text_object)
+
+    @property
+    def font(self):
+        return f'{self.text_font}pt sans-serif'
 
 
 class FlatSlope(CanvasStyleSlope, CanvasBaseObject):
@@ -144,5 +153,4 @@ if __name__ == "__main__":
         CanvasPoint(15, 15), height=3000, width=1500)
     print(triangle_slope.all_coordinates)
 
-
-    print(CanvasBaseObject.find_center_of_coordinates([15,15], [15,100]))
+    print(CanvasBaseObject.find_center_of_coordinates([15, 15], [15, 100]))

@@ -45,7 +45,7 @@ class CanvasResizer:
 
         if hasattr(input_object, "text_blocks"):
             for text_block in input_object.text_blocks:
-                x = self.resized_x - text_block.canvas_point.x
+                x = text_block.canvas_point.x
                 y = self.resized_y - text_block.canvas_point.y
                 x = x / self.relation
                 y = y / self.relation
@@ -65,7 +65,7 @@ class CanvasResizer:
         if len(result_coordinates) > 1:
             if not type(result_coordinates[0]) == list:
                 x, y = result_coordinates
-                x = (self.resized_x - x) / self.relation
+                x = x / self.relation
                 y = (self.resized_y - y) / self.relation
                 result_coordinates = [x, y]
 

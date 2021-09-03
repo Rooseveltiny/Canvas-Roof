@@ -17,6 +17,7 @@ from custom_errors import (
 from canvas_objects import (
     FlatSlope,
     TriangleSlope,
+    CanvasTextBlock,
     CorrugatedSheet,
     EvenTrapeziaSlope,
     CorrugatedSheetParams,
@@ -40,8 +41,9 @@ class CanvasCoveredBase:
         self.cover_with_sheets()
 
     def cover_sheet(self, start_point, height):
+        find_text_pt = CanvasTextBlock.get_text_font(self.sheets_quantity * self.corrugated_params.work_width)
         self.all_objects.append(CorrugatedSheet(
-            start_point, height, corrugated_params=self.corrugated_params))
+            start_point, height, find_text_pt, corrugated_params=self.corrugated_params))
 
     @abstractmethod
     def perform_init(self, *args, **kwargs):
@@ -153,14 +155,14 @@ if __name__ == "__main__":
 
     curragated_params = CorrugatedSheetParams(1205, 1150)
     covered_slope = CoveredFlatSlope(CanvasPoint(
-        15, 15), curragated_params, slope_width=6000, slope_height=3000)
+        15, 15), curragated_params, slope_width=6000, slope_height=2990)
 
     curragated_params = CorrugatedSheetParams(1205, 1150)
     covered_trapez = CoveredTrapezSlope(CanvasPoint(
-        15, 15), curragated_params, up_side=3000, down_side=8000, slope_height=2500)
+        15, 15), curragated_params, up_side=22150, down_side=25000, slope_height=5400)
 
     curragated_params = CorrugatedSheetParams(1205, 1150)
     isosceles_triangle = CoveredIsoscelesTriangleSlope(
-        CanvasPoint(15, 15), curragated_params, height=5000, width=10000)
+        CanvasPoint(15, 15), curragated_params, height=6000, width=6000)
 
-    _get_test_data(covered_trapez, 8000, 2500, 800, 600)
+    _get_test_data(isosceles_triangle, 6000, 6000, 800, 600)

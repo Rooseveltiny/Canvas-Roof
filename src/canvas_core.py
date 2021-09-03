@@ -1,4 +1,5 @@
 from abc import ABCMeta, abstractmethod
+import numpy as np
 
 
 class CanvasPoint:
@@ -74,7 +75,6 @@ class CanvasBaseFigure(BaseCanvas):
 
     def close_figure(self):
         self.set_point(self.start_point)
-
 
     @abstractmethod
     def draw(self):
@@ -167,10 +167,21 @@ class CanvasIsoscelesTrapezoid(CanvasBaseFigure):
 
 class CanvasTextBlock:
 
-    def __init__(self, text, canvas_point):
+    def __init__(self, text, text_font, canvas_point):
 
+        self.text_font = text_font
         self.text = text
         self.canvas_point = canvas_point
+
+    @staticmethod
+    def get_text_font(max_width):
+
+        value = int(np.interp(max_width, [100, 25000], [20, 6]))
+        if value < 6:
+            value = 6
+        elif value > 20:
+            value = 20
+        return value
 
 
 if __name__ == "__main__":
@@ -184,6 +195,6 @@ if __name__ == "__main__":
     isosceles_trapez = CanvasIsoscelesTrapezoid(
         CanvasPoint(15, 15), 100, 200, 50)
     isosceles_trapez.draw()
-    
-    triangle = CanvasTriangle(CanvasPoint(15,15), 15, 100, 150)
+
+    triangle = CanvasTriangle(CanvasPoint(15, 15), 15, 100, 150)
     triangle.draw()
