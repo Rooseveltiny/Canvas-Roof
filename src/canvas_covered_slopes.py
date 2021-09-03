@@ -165,4 +165,4 @@ if __name__ == "__main__":
     isosceles_triangle = CoveredIsoscelesTriangleSlope(
         CanvasPoint(15, 15), curragated_params, height=6000, width=6000)
 
-    _get_test_data(isosceles_triangle, 6000, 6000, 800, 600)
+    _get_test_data(covered_trapez, 25000, 5400, 1500, 600)
