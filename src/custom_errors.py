@@ -12,7 +12,6 @@ class BaseException(Exception):
 class UpSideIsGreaterThanDownSide(BaseException):
     message = "up side is greater than down side. It should be smaller!"
 
-
 class UpSideShouldBeMoreThan600mm(BaseException):
     message = "up side should be more than 600 mm!"
 
