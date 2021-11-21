@@ -71,6 +71,7 @@ class CanvasSlopeDataSerializer:
     def collect_text_blocks(self, text_block):
         text_block_serialialized = {
             "text": text_block.text,
-            "all_coordinates": text_block.canvas_point.coordinates
+            "all_coordinates": text_block.canvas_point.coordinates,
+            "font_size": text_block.text_font
         }
         return text_block_serialialized

@@ -20,7 +20,7 @@ def prepare_data(sheets, max_x, max_y, can_x, can_y):
     CanvasResizer(sheets, max_x, max_y, can_x, can_y)
     sheets_data = CanvasSlopeDataSerializer(sheets)
     slope_data = CanvasSlopeDataSerializer(sheets.slope)
-    return dict(slope=slope_data, sheets=sheets_data)
+    return dict(slope=slope_data.data, sheets=sheets_data.data)
 
 
 def count_flat_slope(sheet_params: CorrugatedSheetParams, canvas_size: dict, size_width: int, size_height: int) -> dict:

@@ -91,7 +91,7 @@ class CorrugatedSheet(CanvasBaseObject):
             *self.all_coordinates[0][0:4])
         text = f'{str(int(round(self.height/5.0)*5))}'
         text_object = CanvasTextBlock(
-            text, self.font, CanvasPoint(*text_placement))
+            text, self.text_font, CanvasPoint(*text_placement))
         self.text_blocks.append(text_object)
 
     @property

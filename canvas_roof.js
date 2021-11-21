@@ -46,15 +46,16 @@ class CanvasDrawer {
 }
 
 class CanvasTextBlock {
-    constructor(text, text_font, coordinates, canvasCTX) {
-        this.text_font = text_font 
+    constructor(text, font_size, coordinates, canvasCTX) {
+        this.font_size = font_size 
         this.text = text
         this.coordinates = coordinates
         this.canvasCTX = canvasCTX
         this.drawObject()
     }
     drawObject() {
-        this.canvasCTX.font = this.text_font; //'20px sans-serif';
+        console.log(this.font_size)
+        this.canvasCTX.font = `${this.font_size}px sans-serif`; //'20px sans-serif';
         this.canvasCTX.textBaseline = "middle";
         this.canvasCTX.textAlign = "center";
         this.canvasCTX.fillText(this.text, ...this.coordinates);
@@ -70,7 +71,7 @@ class CanvasObjectDrawer {
 
 class CanvasTextDrawer {
     constructor(text_block, canvasCTX) {
-        new CanvasTextBlock(text_block.text, text_block.font, text_block.all_coordinates, canvasCTX)
+        new CanvasTextBlock(text_block.text, text_block.font_size, text_block.all_coordinates, canvasCTX)
     }
 }
 
