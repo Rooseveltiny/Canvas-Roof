@@ -1,4 +1,4 @@
-from canvas_covered_slopes import (
+from canvas_roof.src.canvas_covered_slopes import (
     CoveredFlatSlope,
     CoveredTrapezSlope,
     CoveredIsoscelesTriangleSlope,
@@ -7,8 +7,8 @@ from canvas_covered_slopes import (
     CanvasResizer,
 )
 
-from canvas_resizer import CanvasResizer
-from canvas_serializer import CanvasSlopeDataSerializer
+from canvas_roof.src.canvas_resizer import CanvasResizer
+from canvas_roof.src.canvas_serializer import CanvasSlopeDataSerializer
 
 
 def to_mm(input):

@@ -1,20 +1,20 @@
 from abc import ABCMeta, abstractmethod
-from canvas_core import CanvasPoint, CanvasPointer
+from canvas_roof.src.canvas_core import CanvasPoint, CanvasPointer
 from math import ceil
-from canvas_serializer import CanvasSlopeDataSerializer
-from canvas_resizer import CanvasResizer
-from count_sheets import (
+from canvas_roof.src.canvas_serializer import CanvasSlopeDataSerializer
+from canvas_roof.src.canvas_resizer import CanvasResizer
+from canvas_roof.src.count_sheets import (
     CountTrapezSlope,
     CountRectangleSlope,
     CountIsoscelesTriangleSlope
 )
 
-from custom_errors import (
+from canvas_roof.src.custom_errors import (
     UpSideIsGreaterThanDownSide,
     UpSideShouldBeMoreThan600mm
 )
 
-from canvas_objects import (
+from canvas_roof.src.canvas_objects import (
     FlatSlope,
     TriangleSlope,
     CanvasTextBlock,

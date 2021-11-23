@@ -1,8 +1,8 @@
 from abc import ABCMeta, abstractmethod
-from canvas_core import CanvasRectangle, CanvasPoint, CanvasIsoscelesTrapezoid, CanvasTriangle
-from custom_errors import ItIsNotCoordinate
+from canvas_roof.src.canvas_core import CanvasRectangle, CanvasPoint, CanvasIsoscelesTrapezoid, CanvasTriangle
+from canvas_roof.src.custom_errors import ItIsNotCoordinate
 from statistics import mean
-from canvas_core import CanvasTextBlock
+from canvas_roof.src.canvas_core import CanvasTextBlock
 
 
 class CanvasBaseObject:

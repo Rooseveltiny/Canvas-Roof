@@ -1,5 +1,5 @@
 import json
-from custom_errors import SerializeError
+from canvas_roof.src.custom_errors import SerializeError
 
 '''
     this module allows to prepare Canvas Objects to be json serailized
