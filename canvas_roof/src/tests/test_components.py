@@ -1,8 +1,8 @@
-from canvas_resizer import CanvasResizer
-from canvas_covered_slopes import CoveredFlatSlope
-from canvas_objects import CorrugatedSheetParams
-from canvas_serializer import CanvasSlopeDataSerializer
-from canvas_core import CanvasPointer, CanvasPoint, CanvasIsoscelesTrapezoid
+from canvas_roof.src.canvas_resizer import CanvasResizer
+from canvas_roof.src.canvas_covered_slopes import CoveredFlatSlope
+from canvas_roof.src.canvas_objects import CorrugatedSheetParams
+from canvas_roof.src.canvas_serializer import CanvasSlopeDataSerializer
+from canvas_roof.src.canvas_core import CanvasPointer, CanvasPoint, CanvasIsoscelesTrapezoid
 import unittest
 import json
 import sys
@@ -64,14 +64,17 @@ class TestCoveredSlopes(unittest.TestCase):
         first_point_was = self.covered_slope.all_objects[0].all_coordinates[0][0][0]
         self.assertEqual(first_point_was, 15)
         CanvasResizer(self.covered_slope, 6000, 2990, 800, 600)
-        first_point_became = int(self.covered_slope.all_objects[0].all_coordinates[0][0])
+        first_point_became = int(
+            self.covered_slope.all_objects[0].all_coordinates[0][0])
         self.assertEqual(first_point_became, 798)
 
     def test_serializer(self):
 
         self.test_canvas_resizer()
-        prepeared_sheets_data = CanvasSlopeDataSerializer(self.covered_slope).data
-        prepeared_slope_data = CanvasSlopeDataSerializer(self.covered_slope.slope).data
+        prepeared_sheets_data = CanvasSlopeDataSerializer(
+            self.covered_slope).data
+        prepeared_slope_data = CanvasSlopeDataSerializer(
+            self.covered_slope.slope).data
         deserialized_sheets_data = json.loads(prepeared_sheets_data)
         deserialized_slope_data = json.loads(prepeared_slope_data)
         self.assertTrue("all_objects" in deserialized_sheets_data)

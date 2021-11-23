@@ -19,10 +19,11 @@ class CanvasSlopeDataSerializer:
             self.input_object)
 
         data = {
-            # "heights": self.input_object.sheets_heights,
-            # "quantity": self.input_object.sheets_quantity,
             "all_objects": [serialized_objects],
         }
+
+        if hasattr(self.input_object, "sheets_heights"):
+            data['heights'] = self.input_object.sheets_heights
 
         self.output_data = data
 
