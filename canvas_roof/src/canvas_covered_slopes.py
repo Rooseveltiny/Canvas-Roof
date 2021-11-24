@@ -41,9 +41,11 @@ class CanvasCoveredBase:
         self.cover_with_sheets()
 
     def cover_sheet(self, start_point, height):
-        find_text_pt = CanvasTextBlock.get_text_font(self.sheets_quantity * self.corrugated_params.work_width)
-        self.all_objects.append(CorrugatedSheet(
-            start_point, height, find_text_pt, corrugated_params=self.corrugated_params))
+        # here we make not possible to add too small heights
+        if (height>=300): ### <----
+            find_text_pt = CanvasTextBlock.get_text_font(self.sheets_quantity * self.corrugated_params.work_width)
+            self.all_objects.append(CorrugatedSheet(
+                start_point, height, find_text_pt, corrugated_params=self.corrugated_params))
 
     @abstractmethod
     def perform_init(self, *args, **kwargs):
