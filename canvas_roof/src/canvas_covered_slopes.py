@@ -27,9 +27,11 @@ from canvas_roof.src.canvas_objects import (
 class CanvasCoveredBase:
     __metaclass__ = ABCMeta
 
-    def __init__(self, start_point, corrugated_params, *args, **kwargs):
+    def __init__(self, start_point: CanvasPoint, corrugated_params: CorrugatedSheetParams, sheets_start_point: CanvasPoint = None, minimal_height: int = 0, *args, **kwargs):
         self.corrugated_params = corrugated_params
         self.start_point = start_point
+        self.sheets_start_point = sheets_start_point if sheets_start_point else start_point
+        self.minimal_height = minimal_height
         self.sheets_quantity = 0
         self.sheets_heights = []
         self.all_objects = []
@@ -42,8 +44,9 @@ class CanvasCoveredBase:
 
     def cover_sheet(self, start_point, height):
         # here we make not possible to add too small heights
-        if (height>=300): ### <----
-            find_text_pt = CanvasTextBlock.get_text_font(self.sheets_quantity * self.corrugated_params.work_width)
+        if (height >= self.minimal_height):  # <----
+            find_text_pt = CanvasTextBlock.get_text_font(
+                self.sheets_quantity * self.corrugated_params.work_width)
             self.all_objects.append(CorrugatedSheet(
                 start_point, height, find_text_pt, corrugated_params=self.corrugated_params))
 
@@ -79,7 +82,7 @@ class CanvasCoveredBase:
         '''
         creating sheets one by one
         '''
-        pointer = CanvasPointer(self.start_point)
+        pointer = CanvasPointer(self.sheets_start_point)
         for sheet_height in self.sheets_heights:
             self.cover_sheet(pointer.take_point(), sheet_height)
             pointer.move_right(self.corrugated_params.work_width)
