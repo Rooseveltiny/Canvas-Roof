@@ -1,6 +1,8 @@
 import numpy as np
 from abc import ABCMeta, abstractmethod
 
+from canvas_roof.src.canvas_core import CanvasPoint
+
 
 class SlopeContourPoints:
 
@@ -33,7 +35,7 @@ class SlopeContourPoints:
             first_index = self.countur_points_x.index(start_x)
         else:
             first_index = 0
-        
+
         if end_x in self.countur_points_x:
             last_index = self.countur_points_x.index(end_x)
         else:
@@ -45,8 +47,9 @@ class SlopeContourPoints:
 
 class CountHeightSlopeBase:
 
-    def __init__(self, slope, curragated_sheet_param, count_of_sheets):
+    def __init__(self, slope, curragated_sheet_param, count_of_sheets, sheets_start_point: CanvasPoint):
         self.slope = slope
+        self.sheets_start_point = sheets_start_point
         self.curragated_sheet = curragated_sheet_param
         self.count_of_sheets = count_of_sheets
         self.x_dots = []
@@ -58,6 +61,10 @@ class CountHeightSlopeBase:
         self._get_coordinates_of_slope()
         self._perform_count()
 
+    def add_new_height(self, height):
+        should_add = self.slope.start_point.y - self.sheets_start_point.y
+        self.heights.append(height+should_add)
+
     def _perform_count(self):
 
         current_width_right = self.curragated_sheet.work_width
@@ -65,8 +72,10 @@ class CountHeightSlopeBase:
         sloup_countur = SlopeContourPoints(self.x_dots, self.y_dots)
 
         for _ in range(0, self.count_of_sheets):
-            height = sloup_countur.get_highest_point(current_width_left, current_width_right)
-            self.heights.append(height)
+            height = sloup_countur.get_highest_point(
+                current_width_left, current_width_right)
+            # self.heights.append(height)
+            self.add_new_height(height)
             current_width_right += self.curragated_sheet.work_width
             current_width_left += self.curragated_sheet.work_width
 
