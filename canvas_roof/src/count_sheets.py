@@ -74,7 +74,6 @@ class CountHeightSlopeBase:
         for _ in range(0, self.count_of_sheets):
             height = sloup_countur.get_highest_point(
                 current_width_left, current_width_right)
-            # self.heights.append(height)
             self.add_new_height(height)
             current_width_right += self.curragated_sheet.work_width
             current_width_left += self.curragated_sheet.work_width

@@ -2,10 +2,6 @@
 module for adjusting resolution of canvas objects them to be proper input at canvas
 '''
 
-
-import statistics
-
-
 class CanvasResizer:
 
     def __init__(self, canvas_object, max_x, max_y, canvas_x, canvas_y):

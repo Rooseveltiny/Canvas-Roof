@@ -1,5 +1,3 @@
-# import sys
-# sys.path.append('././')
 from canvas_roof.src.canvas_objects import (
     FlatSlope,
     TriangleSlope,

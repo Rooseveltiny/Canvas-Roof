@@ -1,3 +1,5 @@
+import sys
+sys.path.append('././')
 from canvas_roof.src.canvas_covered_slopes import (
     CoveredFlatSlope,
     CoveredTrapezSlope,
@@ -17,7 +19,10 @@ def to_mm(input):
 
 def prepare_data(sheets, max_x, max_y, can_x, can_y):
 
-    CanvasResizer(sheets, max_x, max_y, can_x, can_y)
+    max_sheets_width = sheets.sheets_quantity * sheets.corrugated_params.work_width
+    _max_x = max_sheets_width if max_sheets_width > max_x else max_x
+
+    CanvasResizer(sheets, _max_x, max_y, can_x, can_y)
     sheets_data = CanvasSlopeDataSerializer(sheets)
     slope_data = CanvasSlopeDataSerializer(sheets.slope)
     return dict(slope=slope_data.output_data, sheets=sheets_data.output_data)
