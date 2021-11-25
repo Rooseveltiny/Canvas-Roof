@@ -28,7 +28,7 @@ def count_flat_slope(sheet_params: CorrugatedSheetParams, canvas_size: dict, siz
     size_width = to_mm(size_width)
     size_height = to_mm(size_height)
     covered_slope = CoveredFlatSlope(CanvasPoint(
-        150, 150), sheet_params, CanvasPoint(150, 100), slope_width=size_width, slope_height=size_height)
+        150, 150), sheet_params, CanvasPoint(150, 100), 300, slope_width=size_width, slope_height=size_height)
     return prepare_data(covered_slope, size_width, size_height, canvas_size['x'], canvas_size['y'])
 
 
@@ -38,7 +38,7 @@ def count_trapez_slope(sheet_params: CorrugatedSheetParams, canvas_size: dict, s
     size_top_width = to_mm(size_top_width)
     size_height = to_mm(size_height)
     covered_slope = CoveredTrapezSlope(CanvasPoint(
-        150, 150), sheet_params, CanvasPoint(150, 100), up_side=size_top_width, down_side=size_bottom_width, slope_height=size_height)
+        150, 150), sheet_params, CanvasPoint(150, 100), 300, up_side=size_top_width, down_side=size_bottom_width, slope_height=size_height)
     return prepare_data(covered_slope, size_bottom_width, size_height, canvas_size['x'], canvas_size['y'])
 
 
@@ -47,7 +47,7 @@ def count_isosceles_triangle_slope(sheet_params: CorrugatedSheetParams, canvas_s
     size_width = to_mm(size_width)
     size_height = to_mm(size_height)
     covered_slope = CoveredIsoscelesTriangleSlope(CanvasPoint(
-        150, 150), sheet_params, CanvasPoint(150, 100), height=size_height, width=size_width)
+        150, 150), sheet_params, CanvasPoint(150, 100), 300, height=size_height, width=size_width)
     return prepare_data(covered_slope, size_width, size_height, canvas_size['x'], canvas_size['y'])
 
 
