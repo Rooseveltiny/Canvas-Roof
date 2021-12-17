@@ -63,7 +63,7 @@ class CountHeightSlopeBase:
 
     def add_new_height(self, height):
         should_add = self.slope.start_point.y - self.sheets_start_point.y
-        self.heights.append(int(round(height+should_add/5.0)*5))
+        self.heights.append(int(round((height+should_add)/5.0)*5))
 
     def _perform_count(self):
 
