@@ -103,7 +103,7 @@ class CoveredFlatSlope(CanvasCoveredBase):
 
     def collect_heights(self, *args, **kwargs):
         self.sheets_heights = CountRectangleSlope(
-            self.slope, self.corrugated_params, self.sheets_quantity, self.sheets_start_point).heights
+            self.slope, self.corrugated_params, self.sheets_quantity, self.sheets_start_point, self.minimal_height).heights
 
 
 class CoveredTrapezSlope(CanvasCoveredBase):
@@ -123,7 +123,7 @@ class CoveredTrapezSlope(CanvasCoveredBase):
 
     def collect_heights(self, *args, **kwargs):
         self.sheets_heights = CountTrapezSlope(
-            self.slope, self.corrugated_params, self.sheets_quantity, self.sheets_start_point).heights
+            self.slope, self.corrugated_params, self.sheets_quantity, self.sheets_start_point, self.minimal_height).heights
 
 
 class CoveredIsoscelesTriangleSlope(CanvasCoveredBase):
@@ -142,7 +142,7 @@ class CoveredIsoscelesTriangleSlope(CanvasCoveredBase):
 
     def collect_heights(self, *args, **kwargs):
         self.sheets_heights = CountIsoscelesTriangleSlope(
-            self.slope, self.corrugated_params, self.sheets_quantity, self.sheets_start_point).heights
+            self.slope, self.corrugated_params, self.sheets_quantity, self.sheets_start_point, self.minimal_height).heights
 
 
 def _get_test_data(sheets, max_x, max_y, can_x, can_y):

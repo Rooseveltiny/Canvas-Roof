@@ -47,8 +47,9 @@ class SlopeContourPoints:
 
 class CountHeightSlopeBase:
 
-    def __init__(self, slope, curragated_sheet_param, count_of_sheets, sheets_start_point: CanvasPoint):
+    def __init__(self, slope, curragated_sheet_param, count_of_sheets, sheets_start_point: CanvasPoint, max_sheet_height):
         self.slope = slope
+        self.max_sheet_height = max_sheet_height
         self.sheets_start_point = sheets_start_point
         self.curragated_sheet = curragated_sheet_param
         self.count_of_sheets = count_of_sheets
@@ -62,8 +63,9 @@ class CountHeightSlopeBase:
         self._perform_count()
 
     def add_new_height(self, height):
-        should_add = self.slope.start_point.y - self.sheets_start_point.y
-        self.heights.append(int(round((height+should_add)/5.0)*5))
+        if height >= self.max_sheet_height:
+            should_add = self.slope.start_point.y - self.sheets_start_point.y
+            self.heights.append(int(round((height+should_add)/5.0)*5))
 
     def _perform_count(self):
 
