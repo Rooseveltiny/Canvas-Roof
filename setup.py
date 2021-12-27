@@ -6,7 +6,7 @@ setup(
     version='1.0',
     packages=find_packages(),
     # long_description=open(join(dirname(__file__), 'README.txt')).read(),
-    py_modules=['canvas_roof', ],
+    py_modules=['canvas_roof.lib', ],
     install_requires=[
         'autopep8',
         'numpy',
